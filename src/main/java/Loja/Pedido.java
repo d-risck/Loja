@@ -13,6 +13,7 @@ public class Pedido {
     private String dataDeCriacao;
     private String status;
     private double total;
+    private Cliente cliente;
     private ArrayList<PedidoItem> ListaDeProdutos = new ArrayList();
     
     public void addItens(PedidoItem pedidoItem){
@@ -33,6 +34,14 @@ public class Pedido {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
     
     public Produto removeItens(PedidoItem pedidoItem) throws Exception {
