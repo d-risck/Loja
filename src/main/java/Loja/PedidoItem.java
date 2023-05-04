@@ -13,7 +13,12 @@ public class PedidoItem {
     private int quantidade;
     private double subtotal;
     private Produto produto;
-    
+
+    public PedidoItem(Produto produto, int quantidade) {
+        this.quantidade = quantidade;
+        this.produto = produto;
+    }
+  
     public int getQuantidade() {
         return quantidade;
     }

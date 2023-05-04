@@ -14,10 +14,11 @@ public class Pedido {
     private String status;
     private double total;
     private Cliente cliente;
-    private ArrayList<PedidoItem> ListaDeProdutos = new ArrayList();
+    private ArrayList<PedidoItem> itens = new ArrayList();
     
-    public void addItens(PedidoItem pedidoItem){
-        this.ListaDeProdutos.add(pedidoItem);
+    public void addItens(Produto produto, int quantidade){
+        PedidoItem pi = new PedidoItem(produto, quantidade);
+        this.itens.add(pi);
     }
     
     public String getDataDeCriacao() {
@@ -44,18 +45,18 @@ public class Pedido {
         this.cliente = cliente;
     }
     
-    public Produto removeItens(PedidoItem pedidoItem) throws Exception {
-        int id = this.ListaDeProdutos.indexOf(pedidoItem);
-        PedidoItem produtoRemovido = this.ListaDeProdutos.get(id);
-        this.ListaDeProdutos.remove(id);
-        return produtoRemovido.getProduto();
+    public PedidoItem removeItens(Produto produto, int quantidade) {
+        PedidoItem item = new PedidoItem(produto, 2);
+        if (this.itens.contains(item)){
+            this.itens.remove(item);
+        }
+        return item;
     }
     
-    public double CalcularValorTotal(PedidoItem pedidoItem){
-        int id = this.ListaDeProdutos.indexOf(pedidoItem);
-        PedidoItem valorTotal = this.ListaDeProdutos.get(id);
-        for (int i = 0; i <= this.ListaDeProdutos.size(); i++) {
-           total = total + valorTotal.getSubtotal();
+    public double CalcularValorTotal(){
+        double total = 0;
+        for (PedidoItem item: itens) {
+           total += item.getSubtotal() ;
         }
         return total;
     }
